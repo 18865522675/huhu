@@ -107,7 +107,7 @@
                              <el-input placeholder="请输入姓名" v-model="tableForm.name"  class="aplus-norInp flex-r addSelSelct" >
                                 <el-select v-model="type" slot="prepend" placeholder="请选择">
                                     <el-option label="还款状态" value="1"></el-option>
-                                    <el-option label="用户角色" value="2"></el-option>
+                                    <!--<el-option label="用户角色" value="2"></el-option>-->
                                 </el-select>
                                <div  slot="append">
                                    <el-select placeholder="请选择还款状态" v-model="tableForm.loan_staus"  v-if="type==1">
@@ -115,11 +115,11 @@
                                        <el-option label="正常还款" :value="1"></el-option>
                                        <el-option label="逾期还款" :value="2"></el-option>
                                    </el-select>
-                                   <el-select placeholder="请选择用户角色"  v-model="tableForm.is_old"    v-else>
+                                   <!--<el-select placeholder="请选择用户角色"  v-model="tableForm.is_old"    v-else>
                                        <el-option label="全部" value=""></el-option>
                                        <el-option label="新用户" :value="1"></el-option>
                                        <el-option label="老用户" :value="2"></el-option>
-                                   </el-select>
+                                   </el-select>-->
                                </div>
                             </el-input>
                         </div>
@@ -190,24 +190,24 @@
                                 label="实际还款金额"
                                 show-overflow-tooltip >
                         </el-table-column>
-                        <el-table-column
+                        <!--<el-table-column
                                 prop="money"
                                 label="续期费用"
                                 show-overflow-tooltip >
                             <template slot-scope="scope">
                                 {{scope.row.money?scope.row.money:"" }}
                             </template>
-                        </el-table-column>
+                        </el-table-column>-->
                         <el-table-column
                                 prop="payStatus"
                                 label="	还款状态"
                                 show-overflow-tooltip :formatter="formats">
                         </el-table-column>
-                        <el-table-column
+                        <!--<el-table-column
                                 prop="isOld"
                                 label="角色"
                                 show-overflow-tooltip  :formatter="formats">
-                        </el-table-column>
+                        </el-table-column>-->
                         <el-table-column
                                 prop="giveTime"
                                 label="	打款时间"

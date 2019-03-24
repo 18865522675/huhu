@@ -104,7 +104,7 @@ export default {
   width: 100%;
 	height: auto;
   /*height: 100%;*/
-	background: url("../assets/img/insideBg.png");
+	background: url("../assets/img/insideBg.jpg");
 	background-size:100% 100%;
 	background-repeat: no-repeat;
 	background-position: center center;

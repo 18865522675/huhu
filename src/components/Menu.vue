@@ -2,14 +2,14 @@
 	<div class="sidebar">
 		<template v-for="(item,index) in items">
 			<router-link :to="item.path">
-				<el-menu-item v-if="!item.children&&item.meta.show&&item.meta.routerStatus" :index="item.path">
+				<el-menu-item v-if="!item.children&&item.meta.show" :index="item.path">
 					<i :class="item.meta.icon" v-if="isParent"></i>
 					<span>{{item.meta.title}}</span>
 				</el-menu-item>
 			</router-link>
 			<!-- 判断是否有二级路由 -->
-			<el-submenu v-if="item.children&&item.children.length&&item.meta.routerStatus" :index="String(index*3+3)">
-				<template slot="title" v-if="item.meta.routerStatus">
+			<el-submenu v-if="item.children&&item.children.length" :index="String(index*3+3)">
+				<template slot="title">
 					<i :class="item.meta.icon" v-if="item.meta.title!='会员管理'"></i>
 					<i class="vipIcon" :class="item.meta.icon" v-else></i>
 					<span>{{item.meta.title}}</span>

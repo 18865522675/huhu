@@ -59,7 +59,7 @@
                             this.$message.success("登陆成功!")
                             this.$router.replace("/index")
                         }catch(e){
-                            this.$message.error(e.message)
+                            this.$message.error(e.msg)
                             console.log(e)
                         }
                     } else {
@@ -77,7 +77,7 @@
         position: relative;
         width:100%;
         height:100%;
-        background-image: url(../../assets/img/background.jpg);
+        background-image: url(../../assets/img/background.png);
         background-size: 100% 100%;
     }
     .ms-title{

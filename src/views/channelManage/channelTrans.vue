@@ -143,7 +143,7 @@
                             </el-tab-pane>
 
 
-                            <el-tab-pane label="注册维度" name="register">
+                            <!--<el-tab-pane label="注册维度" name="register">
                                 <el-table
                                         :data="tableData"
                                         border
@@ -167,21 +167,11 @@
                                             :show-overflow-tooltip="true"
                                             label="渠道名称">
                                     </el-table-column>
-                                    <!--<el-table-column-->
-                                            <!--prop="h5ClickNum"-->
-                                            <!--:show-overflow-tooltip="true"-->
-                                            <!--label="H5点击">-->
-                                    <!--</el-table-column>-->
                                     <el-table-column
                                             prop="registerNum"
                                             label="H5注册"
                                             :show-overflow-tooltip="true">
                                     </el-table-column>
-                                    <!--<el-table-column-->
-                                            <!--prop="appDownloadActiveNum"-->
-                                            <!--:show-overflow-tooltip="true"-->
-                                            <!--label="APP下载激活">-->
-                                    <!--</el-table-column>-->
                                     <el-table-column
                                             :show-overflow-tooltip="true"
                                             prop="registerAuthPassNum"
@@ -203,11 +193,10 @@
                                             label="注册下款率">
                                         <template slot-scope="scope">
                                             {{scope.row.registerNum? (scope.row.registerLoanOrderNum/scope.row.registerNum).toFixed(2)*100+'%':'0%'}}
-                                            <!--{{scope.row.registerNum?scope.row.registerLoanOrderNum/scope.row.registerNum}}  + "%"-->
                                         </template>
                                     </el-table-column>
                                 </el-table>
-                            </el-tab-pane>
+                            </el-tab-pane>-->
                         </el-tabs>
                     </div>
 

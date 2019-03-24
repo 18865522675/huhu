@@ -27,6 +27,16 @@ const router_module = {
       component: resolve =>
         require(["@/views/channelManage/channelTrans.vue"], resolve)
     },
+    {
+      path: "/channel/channelPage",
+      name: "channel/channelPage",
+      meta: {
+        title: "渠道商",
+        show: true
+      },
+      component: resolve =>
+        require(["@/views/channelManage/channelPage.vue"], resolve)
+    },
 //  {
 //    path: "/channel/channelOverDue",
 //    name: "channelList/channelOverDue",

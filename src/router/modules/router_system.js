@@ -47,26 +47,26 @@ const router_module = {
 //    component: resolve =>
 //      require(["@/views/systemRole/enterPriseAccount.vue"], resolve)
 //  },
-    {
-      path:"/system/roleConfig",
-      name:"system/roleConfig",
-      meta:{
-        title:"角色配置",
-        show:true
-      },
-      component: resolve =>
-        require(["@/views/systemRole/roleConfig.vue"], resolve)
-    },
 //  {
-//    path:"/system/systemColeConfig",
-//    name:"system/systemColeConfig",
+//    path:"/system/roleConfig",
+//    name:"system/roleConfig",
 //    meta:{
-//      title:"系统角色配置",
+//      title:"角色配置",
 //      show:true
 //    },
 //    component: resolve =>
-//      require(["@/views/systemRole/systemColeConfig.vue"], resolve)
+//      require(["@/views/systemRole/roleConfig.vue"], resolve)
 //  },
+    {
+      path:"/system/systemColeConfig",
+      name:"system/systemColeConfig",
+      meta:{
+        title:"系统角色配置",
+        show:true
+      },
+      component: resolve =>
+        require(["@/views/systemRole/systemColeConfig.vue"], resolve)
+    },
     {
       path:"/system/accountManage",
       name:"system/accountManage",

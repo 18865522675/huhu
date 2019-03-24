@@ -122,7 +122,7 @@
                         </div>
                     </el-col>
                 </el-row>
-                <el-row type="flex" class="row-bg" style="flex-wrap: wrap;margin-top: 8px" :gutter="50">
+                <!--<el-row type="flex" class="row-bg" style="flex-wrap: wrap;margin-top: 8px" :gutter="50">
                     <el-col :span="7">
                         <div class="flex-r global-childItem">
                             <span class="smallSpan">机审规则设置 : </span>
@@ -133,7 +133,7 @@
                             </el-tooltip>
                         </div>
                     </el-col>
-                </el-row>
+                </el-row>-->
             </div>
 
 

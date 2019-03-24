@@ -3,12 +3,12 @@
       "http://www.chineseo2o.com/saas/", // 正式服务器
       "http://172.16.159.119:9999/", //高级版测试服
       "http://www.binbind.com/", //高级版正式服(外)
-      "http://www.binbind.com/aplusvip/", //高级版正式服(外)
+      "http://47.110.143.47:9999/aplusvip/", //高级版正式服(外)
       "https://www.aplusvip.apluswiki.com/", //高级版服(测试)
       "http://172.16.159.110:8080/", // 测试服务器
         // 德华
       "http://192.168.0.149:9999/aplusvip/", // 德华
-      "http://192.168.0.149:8080/", // 德华2
+      "http://192.168.0.149:8080/aplusvip/", // 德华2
       "http://192.168.0.161:9999/aplusvip/", // 蔡家
       "http://192.168.0.107:9999/aplusvip/", // 红
       "http://172.16.159.110:8080/",
