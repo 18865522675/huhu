@@ -77,7 +77,7 @@
         position: relative;
         width:100%;
         height:100%;
-        background-image: url(../../assets/img/background.jpg);
+        background-image: url(../../assets/img/background.png);
         background-size: 100% 100%;
     }
     .ms-title{
@@ -95,7 +95,7 @@
         width:350px;
         margin:-190px 0 0 -175px;
         border-radius: 5px;
-        background: rgba(255,255,255, 0.1);
+        background: rgba(255,255,255, 0.3);
         overflow: hidden;
     }
     .ms-content{
