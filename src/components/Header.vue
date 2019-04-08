@@ -55,7 +55,7 @@
 					<!--<img class="avatar" :src="users.avatar">-->
 					<div class="welcome">
 						<p class="name comename">欢迎,{{userName}}</p>
-						<p class="name avatarname">{{users.userName}}</p>
+						<!--<p class="name avatarname">{{users.userName}}</p>-->
 					</div>
 					<span class='username'>
 						<el-dropdown trigger="click" @command='setDialogInfo'>
@@ -145,7 +145,7 @@
                 case 32:this.adminName="好易花后台管理";break;
 				default:this.adminName="风控管理系统";break
               }
-              this.userName=res.data.userName
+              this.userName=res.data.loginName
 			})
 		  },
 		    logout(){

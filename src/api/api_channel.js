@@ -3,6 +3,10 @@ import { $ } from "./axios";
 export default {
     //获取转换率列表-时间纬度
     channelTrans_getList: params => $.post("channel/page", params, { lock: true }),
+    
+    channelPage_getList: params => $.get("channel/channelManagerList", params, { lock: true }),
+    
+    
 
     //获取渠道商列表（所有）
     channelList_getList: params => $.get("/channel/selectAll", params, { lock: true }),

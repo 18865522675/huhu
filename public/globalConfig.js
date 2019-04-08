@@ -1,8 +1,8 @@
-﻿const HOST_IND = 3, // 切换服务器
+﻿const HOST_IND = 2, // 切换服务器
     HOST = [
       "http://www.chineseo2o.com/saas/", // 正式服务器
       "http://172.16.159.119:9999/", //高级版测试服
-      "http://www.binbind.com/", //高级版正式服(外)
+      "http://47.110.143.47:9999/aplusvip/", //高级版正式服(外)
       "http://47.110.143.47:9999/aplusvip/", //高级版正式服(外)
       "https://www.aplusvip.apluswiki.com/", //高级版服(测试)
       "http://172.16.159.110:8080/", // 测试服务器

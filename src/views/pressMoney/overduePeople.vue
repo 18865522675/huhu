@@ -107,7 +107,7 @@
 	                                show-overflow-tooltip>
 	                        </el-table-column>
 	                        <el-table-column
-	                                prop="limitDays"
+	                                prop="overdueDays"
 	                                label="逾期天数	"
 	                                show-overflow-tooltip >
 	                        </el-table-column>
@@ -136,10 +136,11 @@
 	                        </el-table-column>
 	                        <el-table-column
 	                                fixed="right"
-	                                label="操作" width="500">
+	                                label="操作" width="550">
 	                            <template slot-scope="scope">
 	                                <el-button size="mini" plain class="aplus-pribtn"  @click="$router.push(`/userInfoDetail/${scope.row.userId}/${scope.row.id}/${scope.row.user.userName}/${scope.row.user.phone}`)"  v-if="btnStr.indexOf('查看认证信息')>-1">查看认证信息</el-button>
 	                                <el-button size="mini" plain class="aplus-infoBtn"  @click="$router.push(`/auditManage/auditInfoDetail/${scope.row.id}`)"   v-if="btnStr.indexOf('详情')>-1">详情</el-button>
+                                    <el-button size="mini" plain class="aplus-pribtn" @click="showOrderDetail(scope.row)"  v-if="btnStr.indexOf('订单详情')>-1">订单详情</el-button>
 	                                <el-button size="mini" plain class="aplus-pribtn" @click="showActionModal(scope.row,1)"  v-if="btnStr.indexOf('结清')>-1">结清</el-button>
 	                                <el-button size="mini" plain class="aplus-pribtn" @click="showActionModal(scope.row,2)"  v-if="btnStr.indexOf('续期')>-1">续期</el-button>
                                     <el-button size="mini" plain class="aplus-pribtn" @click="showActionModal(scope.row,4)"   v-if="btnStr.indexOf('修改还款金额')>-1">修改还款金额</el-button>
@@ -295,6 +296,131 @@
                 <el-button type="primary" @click="fenpeiAction('fenpeiForm')">确 定</el-button>
               </span>
         </el-dialog>
+
+
+        <!--订单详情弹窗-->
+        <el-dialog
+                title="订单详情"
+                :visible.sync="orderDetailVisible"
+                width="70%"
+                ref="memberDialog"
+                style="height: 100%;"
+                class="animated memberDialog" :close-on-press-escape="true">
+            <div>
+                <div class="memberDialog-body">
+                    <div class="head-body-info">
+                        <div class="Detailtitle">
+                            主要信息
+                        </div>
+                        <el-row>
+                            <el-col :span="6">
+                                会员名称 : {{orderRow.user.userName}}
+                            </el-col>
+                            <el-col :span="6">
+                                电话号码 : {{orderRow.user.phone}}
+                            </el-col>
+                            <el-col :span="6">
+                                会员来源 : {{orderRow.channelName?orderRow.channelName:'无'}}
+                            </el-col>
+                            <el-col :span="6">
+                                会员身份 : {{orderRow.label==1?'普通用户':orderRow.label==2?'优质用户':'逾期用户'}}
+                            </el-col>
+                        </el-row>
+                    </div>
+                </div>
+
+                <div class="marT30 detailInfoBody flex-r">
+                    <div class="detailBody-left">
+                        <div class="Detailtitle" style="padding-left: 10px">
+                            订单操作
+                        </div>
+                        <!--<div class="detailBody-left-item" @click="detailTab=1" :class="{'detailBody-left-item-active':detailTab==1}">-->
+                            <!--<div>-->
+                                <!--呼叫记录-->
+                            <!--</div>-->
+
+                        <!--</div>-->
+                        <div class="detailBody-left-item" @click="detailTab=2" :class="{'detailBody-left-item-active':detailTab==2}">
+                            <div>
+                                审核记录
+                            </div>
+                        </div>
+                        <div class="detailBody-left-item" @click="detailTab=3" :class="{'detailBody-left-item-active':detailTab==3}">
+                            <div>
+                                放款记录
+                            </div>
+                        </div>
+                        <div class="detailBody-left-item" @click="detailTab=4" :class="{'detailBody-left-item-active':detailTab==4}">
+                            <div>
+                                催记记录
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detailBody-right">
+                        <!--<div v-show="detailTab==1" class="detailBody-right-item dailWrap">-->
+                            <!--<div class="dailWrapHeader">-->
+                                <!--<div  class="Detailtitle" style="padding-left: 20px">-->
+                                    <!--通话信息-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="dailWrapBody">-->
+                                <!--<div class="flex-r dailWrapBody-header">-->
+                                    <!--<div>-->
+                                        <!--会员名称 : <span>张三</span>-->
+                                    <!--</div>-->
+                                    <!--<div>-->
+                                        <!--身份证后四位 : <span>3365</span>-->
+                                    <!--</div>-->
+                                    <!--<div>-->
+                                        <!--借款意愿 : <span>愿意</span>-->
+                                    <!--</div>-->
+                                    <!--<div>-->
+                                        <!--呼叫状态 : <span>呼叫成功</span>-->
+                                    <!--</div>-->
+                                    <!--<div>-->
+                                        <!--呼叫时间 : <span>2018-01-10 13:00</span>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="dailWrapBody-playAudio">-->
+                                    <!--<audio src="ddd"></audio>-->
+                                <!--</div>-->
+                                <!--<div class="dialogPhoto flex-r marL10">-->
+                                    <!--<div class="flex-r" style="align-items: center">-->
+                                        <!--<div class="photo photoRobot"></div>-->
+                                        <!--<span>AI客服</span>-->
+                                    <!--</div>-->
+                                    <!--<div class="flex-r" style="align-items: center">-->
+                                        <!--<div  class="photo photoUser"> </div>-->
+                                        <!--<span>用户</span>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="dialogWord marT10">-->
+                                    <!--<div v-for="(item,index) in words" :key="index"  class="clear">-->
+                                        <!--<div class="marL10 dialogWord-item leftBorder" :class="{'isMine':item.label==2} " :style="{'float':item.label==1?'left':'right'}">-->
+                                            <!--{{item.word}}-->
+                                        <!--</div>-->
+                                        <!--<div class="leftBorder">-->
+
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                        <!--</div>-->
+                        <div v-show="detailTab==2" class="detailBody-right-item">
+                            <recordComponent title="审核记录" :data="shenheList" :showAdd="false" :orderId="orderRow.id" @regetdata="regetdata"></recordComponent>
+                        </div>
+                        <div v-show="detailTab==3" class="detailBody-right-item">
+                            <recordComponent title="放款记录"  :data="fangkuanList" :showAdd="false" :orderId="orderRow.id"  @regetdata="regetdata"></recordComponent>
+                        </div>
+                        <div v-show="detailTab==4" class="detailBody-right-item">
+                            <recordComponent title="催记记录"  :data="cuijiList" :showAdd="true"  :orderId="orderRow.id" @regetdata="regetdata"></recordComponent>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </el-dialog>
         </el-card>
 
     </div>
@@ -302,6 +428,7 @@
 
 <script>
   import animate from "animate.css";
+  import recordComponent from "@/components/recordComponent"
   import { mapState } from 'vuex';
   export default {
     name: "channelList",
@@ -370,7 +497,17 @@
         multipleSelection: [],
         multiDialogVisible:false,
         fenpeiPeople:[],
-        changeVisible:false
+        changeVisible:false,
+        orderDetailVisible:false,
+        orderRow:{
+          user:{
+
+          }
+        },
+        detailTab:2,
+        shenheList:[],
+        fangkuanList:[],
+        cuijiList:[]
       };
     },
     mounted() {
@@ -378,6 +515,7 @@
       this.readyAjax()
     },
     components:{
+      recordComponent
     },
     computed: mapState([
       // map this.count to store.state.count
@@ -396,6 +534,31 @@
       }
     },
     methods: {
+      // 订单详情
+      regetdata(val){
+        switch (val) {
+          case '审核记录':this.getRecordList('getOrderShenheList','shenheList');break;
+          case '放款记录':this.getRecordList('getOrderFangkuanList','fangkuanList');break;
+          case '催记记录':this.getRecordList('getOrderCuijiList','cuijiList');break;
+        }
+      },
+      showOrderDetail(row){
+        this.orderRow={...row};
+        console.log(this.actionRow)
+        this.orderDetailVisible=true;
+        // this.getAiInfo(row.id)
+        this.getRecordList('getOrderShenheList','shenheList');
+        this.getRecordList('getOrderFangkuanList','fangkuanList');
+        this.getRecordList('getOrderCuijiList','cuijiList');
+      },
+      getRecordList(url,data){
+        this.$api.audit[url]({
+          orderId:this.orderRow.id
+        }).then((res)=>{
+          this[data]=res.data
+        })
+      },
+      // 分配人员
       getFenpeiPeople(){
         this.$api.system.getLoginRecord_adminList().then((res)=>{
           this.fenpeiPeople=res.data
@@ -468,10 +631,11 @@
       },
       handleCurrentChange(val){
         this.currentPage=val;
+        this.getOverduePeoples()
       },
       handleSizeChange(val){
           this.pageSize=val;
-          this.getRefuseArtificialList()
+          this.getOverduePeoples()
       },
       getOverduePeoples(){
         this.$api.pressMoney.getOverduePeoples({
@@ -565,4 +729,5 @@
 
 <style  lang="less">
     @import url('../../assets/css/commonTable.less');
+    @import url('../../assets/css/memberDialog.less');
 </style>

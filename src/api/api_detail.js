@@ -53,6 +53,9 @@ export default {
   getTianChuangInfo: params => $.get("/user/getTianChuangInfo", params, { lock: true }),
 
   getIdCardInfo: params => $.get("/tongdun/face/query", params, { lock: true }),
+  
+  getTongdunData: params => $.get("/user/getTongdunInfo", params, { lock: true }),
+  
 
 
 

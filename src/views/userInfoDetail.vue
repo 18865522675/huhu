@@ -538,7 +538,7 @@
 			</el-tab-pane>
 
 
-            <el-tab-pane label="同盾贷前报告">
+            <el-tab-pane label="同盾贷前报告" lazy>
 				<singleTaobaoInfo :res="taobaoRes"></singleTaobaoInfo>
 			</el-tab-pane>
             <!--<el-tab-pane label="机构贷前数据共享报告(推荐)" lazy>
@@ -762,7 +762,7 @@
       //淘宝
 	  this.getTaskId();
 
-	  this.getTaobaoDetail();
+//	  this.getTaobaoDetail();
 
 	  // 获取关键风控数据
 	  this.getRiskData();
@@ -1044,14 +1044,28 @@
         }
 	  },
       transUrl(url){
-        if (url.indexOf("http") > -1) {
+        if (url&&url.indexOf("http") > -1) {
           return url;
         }
         return globalInfo.HOST_IMG + url;
 	  },
-      tabClick(val){
-			console.log(val)
-	  }
+      tabClick(tab,event){
+		if(tab.label=="同盾贷前报告"){
+			this.getTongdunData()
+		}else{
+			this.$nextTick(()=>{
+				document.getElementById("tdReportContainer").style.display="none"
+			})
+		}
+	  },
+	   getTongdunData(){
+    		this.$api.detail.getTongdunData({
+    			userId:this.id
+    		}).then((res)=>{
+    			let data=[res.data];
+    			$.showReport(data)
+    		})
+    	}
 
 
 
@@ -1240,5 +1254,13 @@
 			}
 		}
 	}
-
+	.report-container{
+		top:110px!important
+	}
+	.report-a-close{
+		display: none!important;
+	}
+	.report-mask{
+		display: none!important;
+	}
 </style>

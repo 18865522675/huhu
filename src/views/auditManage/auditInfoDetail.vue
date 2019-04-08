@@ -77,7 +77,7 @@
 			                </div>
 			            
 				  </el-tab-pane>
-				  <el-tab-pane label="扣款记录" name="reduceMoneyRecord">
+				  <el-tab-pane label="扣款记录" name="reduceMoneyRecord" lazy>
 				  	  <el-table
 					    :data="tableData"
 					    border
@@ -85,12 +85,12 @@
 					    class="cardTable"
 					    style="width: 100%">
 					    <el-table-column
-					      prop="date"
+					      prop="createTime"
 					      label="扣款时间">
 					    </el-table-column>
 					    <el-table-column
 					      prop="type"
-					      label="扣款类型"
+					      label="扣款类型" :formatter="transTip"
 					      >
 					    </el-table-column>
 					    <el-table-column
@@ -119,7 +119,8 @@
       };
     },
     mounted() {
-      this.getAuditInfoDetail()
+      this.getAuditInfoDetail();
+      this.getReduceMoneyRecord()
     },
     computed:{
       "id":function(){
@@ -139,6 +140,33 @@
         }).catch(()=>{
           this.$message.error("获取详情失败")
         })
+      },
+      getReduceMoneyRecord(){
+      	 this.$api.audit.getReduceMoneyRecord({
+          orderId:this.id
+        }).then((res)=>{
+            this.tableData=res.data
+        }).catch(()=>{
+          this.$message.error("获取扣款记录失败")
+        })
+      },
+      transTip(val){
+        switch(val.type){
+          case 4:return "风控审核";break;
+          case 6:return "分配审核";break;
+          case 8:return "人工审核";break;
+          case 10:return "关闭";break;
+          case 12:return "退回";break;
+          case 14:return "分配放款";break;
+          case 16:return "放款员审核(打款)";break;
+          case 18:return "还款,结清";break;
+          case 20:return "续期";break;
+          case 22:return "分配催款";break;
+          case 24:return "催款";break;
+          case 40:return "审核备注";break;
+          case 42:return "放款备注";break;
+          case 44:return "催款备注";break;
+        }
       }
     },
     created() {},

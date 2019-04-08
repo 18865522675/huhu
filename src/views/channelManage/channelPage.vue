@@ -11,19 +11,19 @@
                         <div>
                         总PV
                         </div>
-                        <span>{{tableData[0]?tableData[0].registerNum:0}}</span>
+                        <span>{{topInfo.pvTotal}}</span>
                     </div>
                     <div class="aplus-staticWrap-item flex-c" >
                         <div>
                             总UV
                         </div>
-                        <span>{{tableData[0]?tableData[0].authNum:0}}</span>
+                        <span>{{topInfo.uvTotal}}</span>
                     </div>
                     <div class="aplus-staticWrap-item flex-c" >
                         <div>
                             总h5注册
                         </div>
-                        <span>{{tableData[0]?tableData[0].authNum:0}}</span>
+                        <span>{{topInfo.h5RegisterTotal}}</span>
                     </div>
                 </div>
 
@@ -50,13 +50,13 @@
                                         align="right">
                                 </el-date-picker>
                             </el-form-item>
-                            <el-form-item label="查询方式" style="float: left;margin-left: 50px" >
+                            <!--<el-form-item label="查询方式" style="float: left;margin-left: 50px" >
                                 <el-select v-model="type" placeholder="请选择查询方式" class="aplus-sel" @change="getList">
                                     <el-option label="年" value="1111"></el-option>
                                     <el-option label="月" value="22"></el-option>
                                     <el-option label="日" value="33"></el-option>
                                 </el-select>
-                            </el-form-item>
+                            </el-form-item>-->
                             <el-button type="primary" icon="el-icon-refresh" @click="resetAction" class="reloadBtn">重置</el-button>
                         </el-form>
                     </div>
@@ -79,7 +79,7 @@
                                 <!--width="60">-->
                         <!--</el-table-column>-->
                         <el-table-column
-                                prop="cd"           
+                                prop="dateTime"           
                                 label="日期" :show-overflow-tooltip="true"> 
                         </el-table-column>
                         <!--<el-table-column-->
@@ -105,7 +105,7 @@
                                 label="UV">
                         </el-table-column>
                         <el-table-column
-                                prop="h5register"
+                                prop="h5Register"
                                 label="h5注册数">
                         </el-table-column>
                     </el-table>
@@ -243,11 +243,16 @@
                     }
                 }]
             },
-            type:"33"
+            channelId:"",
+            topInfo:{}
+//          type:"33"
         };
       },
       mounted() {
-//        this.getList();
+      	  
+          this.getThisLogin().then(()=>{
+          	this.getList()
+          })
       },
         components:{
             baseDelBtn
@@ -260,6 +265,10 @@
           }
         },
       methods: {
+      	resetAction(){
+      		this.dateTime=[];
+      		this.readyAjax()
+      	},
           getList(){
               let params = {
                   startTime:"",
@@ -269,15 +278,16 @@
                     params.startTime = this.$toolkit.formatTime(this.dateTime[0],false);
                     params.endTime=this.$toolkit.formatTime(this.dateTime[1],false);
                 }
-            this.$api.channel.channelList_getList({
-                pageNum:this.currentPage,
-                pageSize:this.pageSize,
+            this.$api.channel.channelPage_getList({
+                pages:this.currentPage,
+                size:this.pageSize,
                 ...params,
-                type:this.type
+                channelId:this.channelId
             }
             ).then((res)=>{
-                this.tableData=res.data.list
+                this.tableData=res.data.data.channelList
                 this.total=res.data.total;
+                this.topInfo={...res.data.data}
 //              this.drawLine();
             })
             // axios.get(this.$global.HOST_API+"channel/list", {
@@ -294,6 +304,16 @@
             //
             // })
           },
+           getThisLogin(){
+            return new Promise((resolve,reject)=>{
+            	this.$api.system.getThisLogin().then((res)=>{
+            		this.channelId=res.data.id;
+            		resolve()
+				}).catch((e)=>{
+					this.$message.error("获取信息失败")
+				})
+            })
+		  },
           readyAjax(){
             this.currentPage=1;
             this.pageSize=10;

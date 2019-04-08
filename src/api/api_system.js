@@ -98,7 +98,7 @@ export default {
   unfreezeAccount: params => $.get("admin/unfreeze", params, { lock: true }),
 
 
-  getThisLogin: params => $.get("admin/getThisLogin", params, { lock: true }),
+  getThisLogin: params => $.get("admin/thisLogin", params, { lock: true }),
 
   getAllAreas: params => $.get("riskconfig/getAllAreas", params, { lock: true }),
 

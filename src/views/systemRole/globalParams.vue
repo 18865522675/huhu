@@ -159,7 +159,7 @@
                                 <el-input placeholder="请输入一档初始额度" v-model="eduInfo.firstBorrowMoney"></el-input>
                             </span>
                         </div>
-                        <div class="taobaoSet-item flex-r">
+                        <!--<div class="taobaoSet-item flex-r">
                             <span>二档</span>
                             <span>大于等于</span>
                             <span>800-1500</span>
@@ -182,7 +182,7 @@
                             <span>
                                 <el-input placeholder="请输入四档初始额度"  v-model="eduInfo.fourthBorrowMoney"></el-input>
                             </span>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
                 <span slot="footer" class="dialog-footer">

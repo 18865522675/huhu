@@ -31,7 +31,7 @@ const router_module = {
       path: "/channel/channelPage",
       name: "channel/channelPage",
       meta: {
-        title: "渠道商",
+        title: "渠道商数据",
         show: true
       },
       component: resolve =>
