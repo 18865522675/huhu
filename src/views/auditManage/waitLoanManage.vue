@@ -121,8 +121,8 @@
                             <div class="flex-r orderTypeList" style="align-items: center" >
                                 <span style="font-size: 13px" class="marL10">打款状态 : </span>
                                 <div v-for="(item,index) in orderTypeList" :style="{'color':item.color,'backgroundColor':item.backgroundColor}" class="orderTypeItem marL10" :key="index" >{{item.name}}</div>
-                                <span style="font-size: 13px" class="marL30">淘宝反扒状态 : </span>
-                                <div class="taobaoBtn marL10">查看认证详情</div>
+                                <!--<span style="font-size: 13px" class="marL30">淘宝反扒状态 : </span>-->
+                                <!--<div class="taobaoBtn marL10">查看认证详情</div>-->
                             </div>
                         </div>
                         <el-table

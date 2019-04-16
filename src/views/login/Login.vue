@@ -19,7 +19,10 @@
                 </div>
                 <p class="login-tips">Tips : 请填写用户名和密码再登陆。</p>
             </el-form>
-        </div>
+        </div>   				  
+	  <div style="text-align: center;line-height: 60px;color: gray;position: absolute;bottom: 20px;left: 50%;transform: translateX(-50%);">
+	  	Copyright 2019 Hangzhou Lianyan Network Technology Co Ltd.All Rights Reserved
+	  </div>
     </div>
 </template>
 
@@ -59,7 +62,7 @@
                             this.$message.success("登陆成功!")
                             this.$router.replace("/index")
                         }catch(e){
-                            this.$message.error(e.message)
+                            this.$message.error(e.msg)
                             console.log(e)
                         }
                     } else {

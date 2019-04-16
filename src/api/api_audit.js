@@ -106,6 +106,9 @@ export default {
  //逾期待催款获取AI通话列表
   getAiCallInfoList: params => $.get("dialog/detail", params, { lock: true }),
 
+  getReduceMoneyRecord: params => $.get("loanOrderRecord/list", params, { lock: true }),
+  
+
 
 
   };

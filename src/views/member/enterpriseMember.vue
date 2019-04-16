@@ -160,8 +160,13 @@
                                 </template>
                             </el-table-column>
                             <el-table-column
-                                    prop="realMoney"
+                                    prop="status"
                                     label="会员状态"
+                                    show-overflow-tooltip :formatter="formats">
+                            </el-table-column>
+                            <el-table-column
+                                    prop="authStatus"
+                                    label="认证状态"
                                     show-overflow-tooltip :formatter="formats">
                             </el-table-column>
                             <el-table-column
@@ -441,14 +446,27 @@
           }
         })
       },
-      formats(row){
-        switch(row.status){
-          case 1:return "正常";break;
-          case 2:return "黑名单";break;
-          case 3:return "禁用";break;
-          case 4:return "被拒绝(一个月后可借款)";break;
-
-        }
+      formats(row,col){
+		if(col.property=='status'){
+			switch(row.status){
+	          case 1:return "正常";break;
+	          case 2:return "黑名单";break;
+	          case 3:return "禁用";break;
+	          case 4:return "被拒绝";break;
+	        }
+			return
+		}
+		
+		if(col.property=='authStatus'){
+			switch(row.authStatus){
+	          case 1:return "已认证";break;
+	          case 0:return "未认证";break;
+	        }	
+	        return 
+		}
+		
+		
+        
       },
       resetPas(row){
         this.$toolkit.showConfrim('确定要重置此用户的密码吗？','提示').then(()=>{

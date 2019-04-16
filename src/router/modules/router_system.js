@@ -57,16 +57,16 @@ const router_module = {
       component: resolve =>
         require(["@/views/systemRole/roleConfig.vue"], resolve)
     },
-//  {
-//    path:"/system/systemColeConfig",
-//    name:"system/systemColeConfig",
-//    meta:{
-//      title:"系统角色配置",
-//      show:true
-//    },
-//    component: resolve =>
-//      require(["@/views/systemRole/systemColeConfig.vue"], resolve)
-//  },
+    {
+      path:"/system/systemColeConfig",
+      name:"system/systemColeConfig",
+      meta:{
+        title:"系统角色配置",
+        show:true
+      },
+      component: resolve =>
+        require(["@/views/systemRole/systemColeConfig.vue"], resolve)
+    },
     {
       path:"/system/accountManage",
       name:"system/accountManage",
@@ -78,16 +78,16 @@ const router_module = {
         require(["@/views/systemRole/accountManage.vue"], resolve)
     },
 
-//  {
-//    path:"/system/menuConfig",
-//    name:"system/menuConfig",
-//    meta:{
-//      title:"菜单管理",
-//      show:true
-//    },
-//    component: resolve =>
-//      require(["@/views/systemRole/menuConfig.vue"], resolve)
-//  },
+    {
+      path:"/system/menuConfig",
+      name:"system/menuConfig",
+      meta:{
+        title:"菜单管理",
+        show:true
+      },
+      component: resolve =>
+        require(["@/views/systemRole/menuConfig.vue"], resolve)
+    },
 //  {
 //    path:"/system/autoTrail",
 //    name:"system/autoTrail",

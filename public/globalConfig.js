@@ -1,21 +1,20 @@
-﻿const HOST_IND = 3, // 切换服务器
+﻿const HOST_IND = 2, // 切换服务器
     HOST = [
       "http://www.chineseo2o.com/saas/", // 正式服务器
-      "http://172.16.159.119:9999/", //高级版测试服
-      "http://www.binbind.com/", //高级版正式服(外)
+      "http://106.15.184.65/aplusvip/", 
       "http://47.110.143.47:9999/aplusvip/", //高级版正式服(外)
       "https://www.aplusvip.apluswiki.com/", //高级版服(测试)
       "http://172.16.159.110:8080/", // 测试服务器
         // 德华
       "http://192.168.0.149:9999/aplusvip/", // 德华
-      "http://192.168.0.149:8080/", // 德华2
+      "http://192.168.0.149:8080/aplusvip/", // 德华2
       "http://192.168.0.161:9999/aplusvip/", // 蔡家
       "http://192.168.0.107:9999/aplusvip/", // 红
       "http://172.16.159.110:8080/",
       "/" // 代理
     ],
     HOST_CATALOG_API = "api/",// api目录
-    HOST_CATALOG_IMG = "https://hzbjsaas.oss-cn-hangzhou.aliyuncs.com"; // 图片资源目录
+    HOST_CATALOG_IMG = "https://hzccyq.oss-cn-hangzhou.aliyuncs.com"; // 图片资源目录
 
 if (HOST_IND !== 0) {
     console.log(
