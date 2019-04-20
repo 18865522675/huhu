@@ -56,6 +56,10 @@ export default {
   
   getTongdunData: params => $.get("/user/getTongdunInfo", params, { lock: true }),
   
+  getYunMsg: params => $.get("yunqiao/getMsg", params, { lock: true }),
+  
+  getYunCalls: params => $.get("yunqiao/getCalls", params, { lock: true }),
+  
 
 
 

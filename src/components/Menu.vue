@@ -8,8 +8,8 @@
 				</el-menu-item>
 			</router-link>
 			<!-- 判断是否有二级路由 -->
-			<el-submenu v-if="item.children&&item.children.length" :index="String(index*3+3)">
-				<template slot="title">
+			<el-submenu v-if="item.children&&item.children.length&&item.meta.routerStatus" :index="String(index*3+3)">
+				<template slot="title" v-if="item.meta.routerStatus">
 					<i :class="item.meta.icon" v-if="item.meta.title!='会员管理'"></i>
 					<i class="vipIcon" :class="item.meta.icon" v-else></i>
 					<span>{{item.meta.title}}</span>

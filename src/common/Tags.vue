@@ -1,6 +1,6 @@
 <template>
 	<div class="tags" v-if="showTags">
-		<ul style="margin:0;padding: 0 12px">
+		<ul style="margin:0;padding: 0 12px" v-if="tagsList.length">
 			<li class="tags-li" v-for="(item,index) in tagsList" :class="{'active': isActive(item.path)}" :key="index" >
 				<router-link :to="item.path" class="tags-li-title">
 					{{item.title}}
@@ -8,6 +8,9 @@
 				<span class="tags-li-icon" @click="closeTags(index)"><i class="el-icon-close"></i></span>
 			</li>
 		</ul>
+		<div class="noTagsTip" v-else>
+			 暂无标签选项
+		</div>
 		<div class="tags-close-box">
 			<el-dropdown @command="handleTags">
 				<el-button size="mini" type="primary">
@@ -82,7 +85,7 @@
 		},
 		computed: {
 			showTags() {
-				return this.tagsList.length > 0;
+				return true;
 			}
 		},
 		watch: {
@@ -170,5 +173,11 @@
 		background: #fff;
 		box-shadow: -3px 0 15px 3px rgba(0, 0, 0, .1);
 		z-index: 10;
+	}
+	.noTagsTip{
+		color: gray;
+		font-size: 12px;
+		line-height: 30px;
+		padding-left: 20px;
 	}
 </style>

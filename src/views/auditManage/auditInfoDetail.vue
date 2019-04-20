@@ -85,16 +85,16 @@
 					    class="cardTable"
 					    style="width: 100%">
 					    <el-table-column
-					      prop="createTime"
-					      label="扣款时间">
+					      prop="dateTime"
+					      label="扣款时间" :formatter="$toolkit.formatTimeTable">
 					    </el-table-column>
 					    <el-table-column
 					      prop="type"
-					      label="扣款类型" :formatter="transTip"
+					      label="扣款类型"
 					      >
 					    </el-table-column>
 					    <el-table-column
-					      prop="remark"
+					      prop="result"
 					      label="扣款备注">
 					    </el-table-column>
 					  </el-table>

@@ -56,45 +56,45 @@
                             tooltip-effect="dark"
                             style="width: 100%">
                         <el-table-column
-                                prop="lianPayNum"
+                                prop="startTime"
                                 label="时间	">
                         </el-table-column>
                         <el-table-column
-                                prop="user.userName"
+                                prop="name"
                                 label="	分配人员">
                         </el-table-column>
                         <el-table-column
-                                prop="limitDays"
+                                prop="tuiHuiOrderCount"
                                 label="退回订单	"
                                 show-overflow-tooltip >
                         </el-table-column>
                         <el-table-column
-                                prop="borrowMoney"
+                                prop="totalOrderCount"
                                 label="	分配的单数"
                                 show-overflow-tooltip >
                         </el-table-column>
                         <el-table-column
-                                prop="realMoney"
+                                prop="finishOrderCount"
                                 label="结清单数"
                                 show-overflow-tooltip >
                         </el-table-column>
                         <el-table-column
-                                prop="needPayMoney"
+                                prop="jieQingMoney"
                                 label="	结清收到金额"
                                 show-overflow-tooltip >
                         </el-table-column>
                         <el-table-column
-                                prop="giveTime"
+                                prop="xuqiOrderCount"
                                 label="	续期单数"
                                 show-overflow-tooltip >
                         </el-table-column>
                         <el-table-column
-                                prop="limitPayTime"
+                                prop="xuqiMoney"
                                 label="	续期收到金额"
                                 show-overflow-tooltip >
                         </el-table-column>
                         <el-table-column
-                                prop="gmtDatetime"
+                                prop="noFinishOrderCount"
                                 label="	未催回订单"
                                 show-overflow-tooltip>
                         </el-table-column>
@@ -102,6 +102,9 @@
                                 prop="pressMoneyManName"
                                 label="	催回率"
                                 show-overflow-tooltip >
+                            <template slot-scope="scope">
+                                {{(scope.row.recoveryRate*100).toFixed(2)+'%'}}
+                            </template>
                         </el-table-column>
                         <!--<el-table-column-->
                                 <!--fixed="right"-->
@@ -114,17 +117,17 @@
                             <!--</template>-->
                         <!--</el-table-column>-->
                     </el-table>
-                    <div class="block pagiWrap" style="margin-top: 20px">
-                        <el-pagination
-                                @size-change="handleSizeChange"
-                                @current-change="handleCurrentChange"
-                                :current-page="currentPage"
-                                :page-sizes="[10, 20, 30, 50]"
-                                :page-size="pageSize"
-                                layout="total, sizes, prev, pager, next, jumper"
-                                :total="total">
-                        </el-pagination>
-                    </div>
+                    <!--<div class="block pagiWrap" style="margin-top: 20px">-->
+                        <!--<el-pagination-->
+                                <!--@size-change="handleSizeChange"-->
+                                <!--@current-change="handleCurrentChange"-->
+                                <!--:current-page="currentPage"-->
+                                <!--:page-sizes="[10, 20, 30, 50]"-->
+                                <!--:page-size="pageSize"-->
+                                <!--layout="total, sizes, prev, pager, next, jumper"-->
+                                <!--:total="total">-->
+                        <!--</el-pagination>-->
+                    <!--</div>-->
                 </div>
             </div>
 
@@ -167,23 +170,23 @@
     },
     methods: {
       readyAjax(){
+        this.getList()
+      },
+      reset(){
+        this.tableForm.time="";
+        this.readyAjax()
+      },
+      getList(){
         if(this.tableForm.time){
           this.tableForm.gmtDatetime=this.$toolkit.formatTime(this.tableForm.time[0],false)+"~"+this.$toolkit.formatTime(this.tableForm.time[1],false)
         }else{
           this.tableForm.gmtDatetime="";
           delete  this.tableForm.time
         }
-        this.getCollectList()
-      },
-      reset(){
-        this.tableForm.time="";
-        this.readyAjax()
-      },
-      getCollectList(){
         this.$api.pressMoney.getCollectList({
           ...this.tableForm,
         }).then((res)=>{
-          this.getCollectList=res.data.pageDto.list;
+          this.collectList=res.data;
         })
       },
 

@@ -296,7 +296,7 @@
 
             <el-tab-pane label="运营商与通讯录数据">
 				<el-card class="box-card affilateWrap yysWrap">
-					<div class="circleWrap">
+					<!--<div class="circleWrap">
 						<label class="detailLabel">近1周前5联系人通话详情</label>
 						<el-table class="marT20 aplus-center-table" border :row-class-name="tableRowClassName"   center style="width: 100%" :data="yysTable.topFiveTable">
 							<el-table-column
@@ -347,14 +347,13 @@
 								<template slot-scope="scope">
 									<span v-if="scope.row.name">{{scope.row.name}}</span>
 									<span v-else  style="color:red;font-weight: bold;">无记录</span>
-									<!--{{scope.row.name?scope.row.name:'无记录'}}-->
 								</template>
 							</el-table-column>
 						</el-table>
-					</div>
+					</div>-->
 
 
-					<div class="circleWrap marT60">
+					<!--<div class="circleWrap marT60">
 						<label class="detailLabel">近1周前10联系人通话详情</label>
 						<el-table class="marT20 aplus-center-table" border :row-class-name="tableRowClassName"   center style="width: 100%" :data="yysTable.topTenTable">
 							<el-table-column
@@ -405,58 +404,50 @@
 								<template slot-scope="scope">
 									<span v-if="scope.row.name">{{scope.row.name}}</span>
 									<span v-else  style="color:red;font-weight: bold;">无记录</span>
-									<!--{{scope.row.name?scope.row.name:'无记录'}}-->
 								</template>
 							</el-table-column>
 						</el-table>
-					</div>
+					</div>-->
 
 
 
-					<div class="circleWrap marT60">
+					<div class="circleWrap">
 						<label class="detailLabel">全部联系人明细</label>
 						<div style="height: 600px;overflow-y: auto" class="marT20 ">
 							<el-table class="aplus-center-table" border :row-class-name="tableRowClassName"   center style="width: 100%" :data="yysTable.topAll">
 								<el-table-column
-										prop="contact_number" width="150" :show-overflow-tooltip="true"
+										prop="peer_number" width="150" :show-overflow-tooltip="true"
 										label="号码">
 								</el-table-column>
 								<el-table-column
+										prop="details_id" :show-overflow-tooltip="true"
+										label="号码标识" :formatter="$toolkit.transNull">
+								</el-table-column>
+								<el-table-column
 										prop="contact_area" :show-overflow-tooltip="true"
+										label="号码类型" :formatter="$toolkit.transNull">
+								</el-table-column>
+								<el-table-column
+										prop="location" :show-overflow-tooltip="true"
 										label="归属地" :formatter="$toolkit.transNull">
 								</el-table-column>
 								<el-table-column
-										prop="last_time_call_6month" :show-overflow-tooltip="true"
-										label="联系密度分析(周|月|3月)">
-									<template slot-scope="scope">
-										{{scope.row.call_count_1week+ '次|' +scope.row.call_count_1month+ '次|' + scope.row.call_count_3month +'次'}}
-									</template>
+										prop="contact_area" :show-overflow-tooltip="true"
+										label="近一周通话次数" :formatter="$toolkit.transNull">
 								</el-table-column>
 								<el-table-column
-										prop="call_count_3month" :show-overflow-tooltip="true"
-										label="联系次数">
+										prop="contact_area" :show-overflow-tooltip="true"
+										label="近一月通话次数" :formatter="$toolkit.transNull">
 								</el-table-column>
 								<el-table-column
-										prop="call_time_3month"  width="100" :show-overflow-tooltip="true"
-										label="联系时间(分)">
+										prop="contact_area" :show-overflow-tooltip="true"
+										label="近三月通话次数" :formatter="$toolkit.transNull">
 								</el-table-column>
 								<el-table-column
-										prop="call_count_active_3month" :show-overflow-tooltip="true"
-										label="主叫次数">
+										prop="contact_area" :show-overflow-tooltip="true"
+										label="近六月通话次数" :formatter="$toolkit.transNull">
 								</el-table-column>
-								<el-table-column
-										prop="call_count_passive_3month" :show-overflow-tooltip="true"
-										label="被叫次数">
-								</el-table-column>
-								<el-table-column
-										prop="date"
-										label="通讯录">
-									<template slot-scope="scope">
-										<span v-if="scope.row.name">{{scope.row.name}}</span>
-										<span v-else  style="color:red;font-weight: bold;">无记录</span>
-										<!--{{scope.row.name?scope.row.name:'无记录'}}-->
-									</template>
-								</el-table-column>
+								
 							</el-table>
 						</div>
 					</div>
@@ -746,11 +737,16 @@
     destoryed () {
     },
     mounted () {
+//    this.$nextTick(()=>{
+//    	let wid=document.body.clientWidth-210;
+//    	document.getElementsByClassName("container")[0].style.width=wid+'px';
+//    })
+    		
       this.getYoudunInfo()
       // 获取基本信息
       this.getBaseInfo();
 	  // 获取运营商与通讯录匹配
-      this.getYysInfo();
+//    this.getYysInfo();
 
       // 本地通讯录
       this.nativePhones();
@@ -760,7 +756,7 @@
 	  this.getBankCardInfo();
 
       //淘宝
-	  this.getTaskId();
+//	  this.getTaskId();
 
 //	  this.getTaobaoDetail();
 
@@ -773,12 +769,31 @@
 	  // 获取历史订单信息
 	  this.getHistoryData();
 
-	  this.getIdCardInfo()
+	  this.getIdCardInfo();
+	  this.getYunMsg();
+	  this.getYunCalls()
     },
     methods: {
-      showImg(url,type){
-
-	  },
+      getYunCalls(){
+      	this.$api.detail.getYunCalls({
+      		userId:this.id
+      	}).then((res)=>{
+      		res.data.map((item)=>{
+//    			item.items.map((cItem)=>{
+//    				
+//    			})
+      			this.yysTable.topAll.push(...item.items)
+      		})
+      	})
+      },
+      getYunMsg(){
+      	this.$api.detail.getYunMsg({
+      		userId:this.id
+      	}).then((res)=>{
+      		this.taobaoSrc="https://tenant.51datakey.com/carrier/report_data?data="+res.data;
+      		this.taobaoHeight=window.innerHeight  + "px"
+      	})
+      },
       tableRowClassName({row, rowIndex}) {
         if (rowIndex %3==1) {
           return 'warning-row';
@@ -841,11 +856,11 @@
 				if(oData.data){
 				  data.data.all_contact_detail.map((item)=>{
 				    if(item.contact_number==oData.data.linkPersonPhoneOne){
-				      this.jinjiList.benji1.push(item)
+				      this.jinjiList.benji1.push(item||'')
 					}
 
                     if(item.contact_number==oData.data.linkPersonPhoneTwo){
-                      this.jinjiList.benji2.push(item)
+                      this.jinjiList.benji2.push(item||'')
                     }
 
 
@@ -887,23 +902,23 @@
           	this.nativeTables.total=res.data.total;
 		})
 	  },
-      getTaskId(){
-        this.$api.detail.getTaskId({
-		  userId:this.id
-		}).then((data)=>{
-		       let taskId="";
-			 if(data.data){
-               taskId = data.data.taskId;
-               this.$api.detail.getTongdunToken().then((res)=>{
-                 let token = res.data;
-                 this.taobaoSrc="https://report.shujumohe.com/report/" + taskId + "/" + token;
-                 this.taobaoHeight=window.innerHeight  + "px"
-			   })
-			 }else{
-			   this.taobaoSrc="https://api.wawazz.cn/404"
-			 }
-        })
-	  },
+//    getTaskId(){
+//      this.$api.detail.getTaskId({
+//		  userId:this.id
+//		}).then((data)=>{
+//		       let taskId="";
+//			 if(data.data){
+//             taskId = data.data.taskId;
+//             this.$api.detail.getTongdunToken().then((res)=>{
+//               let token = res.data;
+//               this.taobaoSrc="https://report.shujumohe.com/report/" + taskId + "/" + token;
+//               this.taobaoHeight=window.innerHeight  + "px"
+//			   })
+//			 }else{
+//			   this.taobaoSrc="https://api.wawazz.cn/404"
+//			 }
+//      })
+//	  },
 	  searchBenji(){
         this.nativeTables.current=1;
         this.nativeTables.size=10;
@@ -1051,7 +1066,7 @@
 	  },
       tabClick(tab,event){
 		if(tab.label=="同盾贷前报告"){
-			this.getTongdunData()
+			this.getTongdunData();
 		}else{
 			this.$nextTick(()=>{
 				document.getElementById("tdReportContainer").style.display="none"
@@ -1063,7 +1078,14 @@
     			userId:this.id
     		}).then((res)=>{
     			let data=[res.data];
-    			$.showReport(data)
+    			$.showReport(data);
+    			this.$nextTick(()=>{
+		      	setTimeout(()=>{
+		      			let wid=document.body.clientWidth-240;
+		 		alert(wid)
+		      	document.getElementsByClassName("container")[0].style.width=700+'px!important';
+		      	},2000)
+		      })
     		})
     	},
 	},
@@ -1255,12 +1277,16 @@
 		}
 	}
 	.report-container{
-		top:110px!important
+		top:140px!important
 	}
 	.report-a-close{
 		display: none!important;
 	}
 	.report-mask{
 		display: none!important;
+	}
+	.container{
+		left: 340px!important;
+		margin-left: 0!important;
 	}
 </style>
