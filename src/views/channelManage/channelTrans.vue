@@ -81,7 +81,7 @@
                                             label="日期"
                                             :formatter="$toolkit.formatTimeTable">
                                         <template slot-scope="scope">
-                                            {{$toolkit.formatTime(scope.row.reportDate,false)}}
+                                            {{$toolkit.formatTime(scope.row.dateTime,false)}}
                                         </template>
                                     </el-table-column>
                                     <el-table-column
@@ -91,28 +91,28 @@
                                             label="渠道名称">
                                     </el-table-column>
                                     <el-table-column
-                                            prop="h5ClickNum"
+                                            prop="pv"
                                             :show-overflow-tooltip="true"
                                             label="PV">
                                     </el-table-column>
                                     <el-table-column
-                                            prop="h5UniqueVisitor"
+                                            prop="uv"
                                             :show-overflow-tooltip="true"
                                             label="UV">
                                     </el-table-column>
                                     <el-table-column
-                                            prop="h5RegisterNum"
+                                            prop="h5RegisterNumber"
                                             label="H5注册"
                                             :show-overflow-tooltip="true">
                                     </el-table-column>
-                                    <el-table-column
+                                    <!--<el-table-column
                                             prop="appDownloadActiveNum"
                                             :show-overflow-tooltip="true"
                                             label="APP下载激活">
-                                    </el-table-column>
+                                    </el-table-column>-->
                                     <el-table-column
                                             :show-overflow-tooltip="true"
-                                            prop="authPassNum"
+                                            prop="authPassNumber"
                                             label="认证通过">
                                     </el-table-column>
                                     <!--<el-table-column-->
@@ -122,12 +122,12 @@
                                     <!--</el-table-column>-->
                                     <el-table-column
                                             :show-overflow-tooltip="true"
-                                            prop="applyOrderNum"
+                                            prop="applyOrderNumber"
                                             label="申请订单数">
                                     </el-table-column>
                                     <el-table-column
                                             :show-overflow-tooltip="true"
-                                            prop="loanOrderNum"
+                                            prop="loanAmountNumber"
                                             label="放款数">
                                     </el-table-column>
                                     <!--<el-table-column-->

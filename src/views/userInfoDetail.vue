@@ -157,7 +157,7 @@
                      </div>-->
 
 
-                     <div class="detailLabel marT20">平台共享数据 <span class="smallTip">注 : 本次申请也计算在内</span></div>
+                     <!--<div class="detailLabel marT20">平台共享数据 <span class="smallTip">注 : 本次申请也计算在内</span></div>
                      <div class="publicData borderB">
                      	<el-row class="elRowNormal">
                      		<el-col :span="12">累计放款订单数 : {{shareInfo.totalLoanOrderNum}}</el-col>
@@ -168,7 +168,7 @@
                      		<el-col :span="12">累计逾期次数 : {{shareInfo.totalOverdueOrderTimes}}</el-col>
                      		<el-col :span="12">最长逾期天数 : {{shareInfo.maximumOverdueDays}}</el-col>
                      	</el-row>
-                     </div>
+                     </div>-->
 
                      <div class="detailLabel marT20">紧急联系人</div>
                      <div class="jinjiPeople borderB">
@@ -416,15 +416,15 @@
 						<div style="height: 600px;overflow-y: auto" class="marT20 ">
 							<el-table class="aplus-center-table" border :row-class-name="tableRowClassName"   center style="width: 100%" :data="yysTable.topAll">
 								<el-table-column
-										prop="peer_number" width="150" :show-overflow-tooltip="true"
+										prop="phone" width="150" :show-overflow-tooltip="true"
 										label="号码">
 								</el-table-column>
 								<el-table-column
-										prop="details_id" :show-overflow-tooltip="true"
+										prop="phoneSign" :show-overflow-tooltip="true"
 										label="号码标识" :formatter="$toolkit.transNull">
 								</el-table-column>
 								<el-table-column
-										prop="contact_area" :show-overflow-tooltip="true"
+										prop="phoneType" :show-overflow-tooltip="true"
 										label="号码类型" :formatter="$toolkit.transNull">
 								</el-table-column>
 								<el-table-column
@@ -432,20 +432,27 @@
 										label="归属地" :formatter="$toolkit.transNull">
 								</el-table-column>
 								<el-table-column
-										prop="contact_area" :show-overflow-tooltip="true"
+										prop="callCountOneWeek" :show-overflow-tooltip="true"
 										label="近一周通话次数" :formatter="$toolkit.transNull">
 								</el-table-column>
 								<el-table-column
-										prop="contact_area" :show-overflow-tooltip="true"
+										prop="callCountOneMonth" :show-overflow-tooltip="true"
 										label="近一月通话次数" :formatter="$toolkit.transNull">
 								</el-table-column>
 								<el-table-column
-										prop="contact_area" :show-overflow-tooltip="true"
+										prop="callCountThreeMonth" :show-overflow-tooltip="true"
 										label="近三月通话次数" :formatter="$toolkit.transNull">
 								</el-table-column>
 								<el-table-column
-										prop="contact_area" :show-overflow-tooltip="true"
+										prop="callCountSixMonth" :show-overflow-tooltip="true"
 										label="近六月通话次数" :formatter="$toolkit.transNull">
+								</el-table-column>
+								<el-table-column
+										prop="callCountSixMonth" :show-overflow-tooltip="true"
+										label="通讯录姓名">
+										<template slot-scope="scope">
+											<span :style="{'color':scope.row.match==1?'red':'black'}">{{scope.row.username||'未知'}}</span>
+										</template>
 								</el-table-column>
 								
 							</el-table>
@@ -778,12 +785,7 @@
       	this.$api.detail.getYunCalls({
       		userId:this.id
       	}).then((res)=>{
-      		res.data.map((item)=>{
-//    			item.items.map((cItem)=>{
-//    				
-//    			})
-      			this.yysTable.topAll.push(...item.items)
-      		})
+      		this.yysTable.topAll=res.data
       	})
       },
       getYunMsg(){
@@ -1082,7 +1084,7 @@
     			this.$nextTick(()=>{
 		      	setTimeout(()=>{
 		      			let wid=document.body.clientWidth-240;
-		 		alert(wid)
+//		 		alert(wid)	
 		      	document.getElementsByClassName("container")[0].style.width=700+'px!important';
 		      	},2000)
 		      })

@@ -98,16 +98,16 @@ const router_module = {
 //    component: resolve =>
 //      require(["@/views/systemRole/autoTrail.vue"], resolve)
 //  },
-//  {
-//    path:"/system/adminMenuConfig/:roleId/:adminId",
-//    name:"system/adminMenuConfig",
-//    meta:{
-//      title:"设置用户权限",
-//      show:false
-//    },
-//    component: resolve =>
-//      require(["@/views/systemRole/adminMenuConfig.vue"], resolve)
-//  }
+    {
+      path:"/system/adminMenuConfig/:roleId/:adminId",
+      name:"system/adminMenuConfig",
+      meta:{
+        title:"设置用户权限",
+        show:false
+      },
+      component: resolve =>
+        require(["@/views/systemRole/adminMenuConfig.vue"], resolve)
+    }
   ]
 };
 

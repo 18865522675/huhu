@@ -759,11 +759,11 @@
         },{
           color:"#f56c6c",
           backgroundColor:"#fef0f0",
-          name:"打款失败"
+          name:"打款成功"
         },{
           color:"#67c23a",
           backgroundColor:"#f0f9eb",
-          name:"打款成功"
+          name:"打款失败"
         }],
         orderDetailVisible:false,
         detailInfo:{},

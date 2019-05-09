@@ -462,12 +462,12 @@
                         <div class="Detailtitle" style="padding-left: 10px">
                             订单操作
                         </div>
-                        <div class="detailBody-left-item" @click="detailTab=1" :class="{'detailBody-left-item-active':detailTab==1}">
+                        <!--<div class="detailBody-left-item" @click="detailTab=1" :class="{'detailBody-left-item-active':detailTab==1}">
                             <div>
                                 呼叫记录
                             </div>
 
-                        </div>
+                        </div>-->
                         <div class="detailBody-left-item" @click="detailTab=2" :class="{'detailBody-left-item-active':detailTab==2}">
                             <div>
                                 审核记录
@@ -670,7 +670,7 @@
 
         orderDetailVisible:false,
         detailInfo:{},
-        detailTab:1,
+        detailTab:2,
         words:[{
           word:'今天天气很好,号个P',
           label:1

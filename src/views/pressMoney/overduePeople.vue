@@ -73,8 +73,8 @@
 					<div class="listContent marT60">
 	                    <div class="flex-r" style="justify-content: space-between;padding: 10px;">
 	                        <div>
-	                            <el-button size="mini" type="primary"  @click="multiAction(2)">分配</el-button>
-	                            <el-button size="mini" type="primary" @click="multiAction(1)">退回</el-button>
+	                            <el-button size="mini" type="primary"  @click="multiAction(2)"  v-if="btnStr.indexOf('分配')>-1">分配</el-button>
+	                            <el-button size="mini" type="primary" @click="multiAction(1)"  v-if="btnStr.indexOf('退回')>-1">退回</el-button>
 	                        </div>
 	                        <div class="flex-r" style="align-items: center">
 	                            <div>
@@ -143,8 +143,9 @@
                                     <el-button size="mini" plain class="aplus-pribtn" @click="showOrderDetail(scope.row)"  v-if="btnStr.indexOf('订单详情')>-1">订单详情</el-button>
 	                                <el-button size="mini" plain class="aplus-pribtn" @click="showActionModal(scope.row,1)"  v-if="btnStr.indexOf('结清')>-1">结清</el-button>
 	                                <el-button size="mini" plain class="aplus-pribtn" @click="showActionModal(scope.row,2)"  v-if="btnStr.indexOf('续期')>-1">续期</el-button>
+	                                <!--<el-button size="mini" plain class="aplus-pribtn" @click="showActionModal(scope.row,5)" v-if="showdaikou">代扣</el-button>-->
                                     <el-button size="mini" plain class="aplus-pribtn" @click="showActionModal(scope.row,4)"   v-if="btnStr.indexOf('修改还款金额')>-1">修改还款金额</el-button>
-                                    <el-button size="mini" plain class="aplus-pribtn" @click="showActionModal(scope.row,3)"  v-if="btnStr.indexOf('代扣')>-1">代扣</el-button>
+                                    <el-button size="mini" plain class="aplus-pribtn" @click="showActionModal(scope.row,3)"  v-if="showdaikou">代扣</el-button>
 	                            </template>
 	                        </el-table-column>
 	                    </el-table>
@@ -507,12 +508,14 @@
         detailTab:2,
         shenheList:[],
         fangkuanList:[],
-        cuijiList:[]
+        cuijiList:[],
+        showdaikou:false
       };
     },
     mounted() {
       this.getFenpeiPeople()
-      this.readyAjax()
+      this.readyAjax();
+      this.selectPayOnCardPower()
     },
     components:{
       recordComponent
@@ -719,7 +722,13 @@
             return false;
           }
         });
+      },
+      selectPayOnCardPower(){
+      	 this.$api.pressMoney.selectPayOnCardPower().then((res)=>{
+      	 	this.showdaikou=res.data
+      	 })
       }
+    
 
     },
     created() {},

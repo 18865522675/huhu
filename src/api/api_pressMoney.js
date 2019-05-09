@@ -33,7 +33,10 @@ export default {
 
   // 修改还款金额
   changeMoney: params => $.get("/loanOrder/update/needMoney", params, { lock: true }),
-
+  
+  selectPayOnCardPower: params => $.get("/admin/selectPayOnCardPower", params, { lock: true }),
+  
+//daikouAction: params => $.get("/fuyou/payOnCard", params, { lock: true }),
 
 
 
