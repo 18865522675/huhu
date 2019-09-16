@@ -178,6 +178,7 @@
 	                                <el-button size="mini" plain class="aplus-pribtn" @click="showActionModal(scope.row,1)"  v-if="btnStr.indexOf('结清')>-1">结清</el-button>
 	                                <el-button size="mini" plain class="aplus-pribtn" @click="showActionModal(scope.row,2)"  v-if="btnStr.indexOf('续期')>-1">续期</el-button>
 									<el-button size="mini" plain class="aplus-pribtn" @click="showActionModal(scope.row,3)"   v-if="btnStr.indexOf('修改还款金额')>-1">修改还款金额</el-button>
+									<el-button size="mini" plain class="aplus-pribtn" @click="showActionModal(scope.row,4)"  v-if="btnStr.indexOf('代扣')>-1">代扣</el-button>
 	                            </template>
 	                        </el-table-column>
 	                    </el-table>
@@ -552,8 +553,9 @@
       };
     },
     mounted() {
+    	console.log(this.btnStr)
       this.getFenpeiPeople()
-      this.readyAjax()
+      this.readyAjax();
     },
     components:{
       recordComponent
@@ -699,8 +701,17 @@
           this.dialogVisible=true;
         }else if(type==2){
           this.xuqiDialogVisible=true;
-        }else{
+        }else if(type==3){
           this.changeVisible=true
+		}else{
+			this.$toolkit.showConfrim('您确定要进行代扣操作吗','代扣').then(()=>{
+            this.$api.pressMoney.payOnCard({
+              orderId:row.id,
+            }).then(()=>{
+              this.$message.success("代扣成功!");
+              this.readyAjax()
+            })
+          })
 		}
       },
       jieqingAction(formName){

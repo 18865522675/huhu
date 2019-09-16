@@ -145,7 +145,7 @@
 	                                <el-button size="mini" plain class="aplus-pribtn" @click="showActionModal(scope.row,2)"  v-if="btnStr.indexOf('续期')>-1">续期</el-button>
 	                                <!--<el-button size="mini" plain class="aplus-pribtn" @click="showActionModal(scope.row,5)" v-if="showdaikou">代扣</el-button>-->
                                     <el-button size="mini" plain class="aplus-pribtn" @click="showActionModal(scope.row,4)"   v-if="btnStr.indexOf('修改还款金额')>-1">修改还款金额</el-button>
-                                    <el-button size="mini" plain class="aplus-pribtn" @click="showActionModal(scope.row,3)"  v-if="showdaikou">代扣</el-button>
+                                    <el-button size="mini" plain class="aplus-pribtn" @click="showActionModal(scope.row,3)"  v-if="btnStr.indexOf('代扣')>-1">代扣</el-button>
 	                            </template>
 	                        </el-table-column>
 	                    </el-table>
